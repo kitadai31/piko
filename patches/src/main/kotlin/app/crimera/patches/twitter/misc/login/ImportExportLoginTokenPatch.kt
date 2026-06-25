@@ -42,6 +42,59 @@ private object OcfCtaStepDynamicLayoutInflateFingerprint : Fingerprint(
         ),
 )
 
+private val importExportLoginTokenResourcePatch = resourcePatch {
+    execute {
+        document("res/layout/ocf_cta_step_dynamic.xml").use {
+            val newElement =
+                it.createElement("com.twitter.ui.components.text.legacy.TypefacesTextView").apply {
+                    setAttribute("android:id", "@+id/import_token_text")
+                    setAttribute("android:text", "@string/piko_login_token_import_token_button_text")
+                    setAttribute("android:gravity", "center_vertical")
+                    setAttribute("android:layout_width", "match_parent")
+                    setAttribute("android:layout_height", "wrap_content")
+                    setAttribute("android:layout_marginBottom", "@dimen/ocf_standard_spacing")
+                    setAttribute("android:layout_marginHorizontal", "@dimen/ocf_screen_padding_wide")
+                    setAttribute("android:clickable", "true")
+                    setAttribute("style", "@style/OcfBodyText")
+                }
+            it.documentElement.appendChild(newElement)
+        }
+
+        document("res/xml/shortcuts.xml").use {
+            val extraElement =
+                it.createElement("extra").apply {
+                    setAttribute("android:name", "shortcut")
+                    setAttribute("android:value", "settings")
+                }
+            val intentElement =
+                it.createElement("intent").apply {
+                    setAttribute("android:targetPackage", "com.twitter.android")
+                    setAttribute("android:action", "android.intent.action.VIEW")
+                    // Open Piko Settings
+                    setAttribute("android:data", "https://x.com/i/piko/")
+                    setAttribute("android:targetClass", "com.twitter.deeplink.implementation.UrlInterpreterActivity")
+                    appendChild(extraElement)
+                }
+            val shortcutElement =
+                it.createElement("shortcut").apply {
+                    setAttribute("android:icon", "@drawable/ic_vector_settings_shortcut")
+                    setAttribute("android:enabled", "true")
+                    setAttribute("android:shortcutId", "settings")
+                    setAttribute("android:shortcutShortLabel", "@string/piko_name")
+                    setAttribute("android:shortcutLongLabel", "@string/piko_name")
+                    appendChild(intentElement)
+                }
+            it.documentElement.insertBefore(shortcutElement, it.documentElement.firstChild)
+        }
+
+        copyResources(
+            "twitter/settings",
+            ResourceGroup("layout", "fragment_export_token.xml"),
+            ResourceGroup("drawable", "ic_vector_settings_shortcut.xml"),
+        )
+    }
+}
+
 @Suppress("unused")
 val importExportLoginTokenPatch =
     bytecodePatch(
@@ -55,30 +108,7 @@ val importExportLoginTokenPatch =
         dependsOn(
             resourceMappingPatch,
             settingsPatch,
-            resourcePatch {
-                execute {
-                    document("res/layout/ocf_cta_step_dynamic.xml").use {
-                        val newElement =
-                            it.createElement("com.twitter.ui.components.text.legacy.TypefacesTextView").apply {
-                                setAttribute("android:id", "@+id/import_token_text")
-                                setAttribute("android:text", "@string/piko_login_token_import_token_button_text")
-                                setAttribute("android:gravity", "center_vertical")
-                                setAttribute("android:layout_width", "match_parent")
-                                setAttribute("android:layout_height", "wrap_content")
-                                setAttribute("android:layout_marginBottom", "@dimen/ocf_standard_spacing")
-                                setAttribute("android:layout_marginHorizontal", "@dimen/ocf_screen_padding_wide")
-                                setAttribute("android:clickable", "true")
-                                setAttribute("style", "@style/OcfBodyText")
-                            }
-                        it.documentElement.appendChild(newElement)
-                    }
-
-                    copyResources(
-                        "twitter/settings",
-                        ResourceGroup("layout", "fragment_export_token.xml"),
-                    )
-                }
-            },
+            importExportLoginTokenResourcePatch,
         )
 
         execute {
