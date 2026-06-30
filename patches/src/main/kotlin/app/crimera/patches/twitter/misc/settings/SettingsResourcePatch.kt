@@ -80,8 +80,8 @@ internal val settingsResourcePatch =
                         setAttribute("android:icon", "@drawable/ic_vector_settings_shortcut")
                         setAttribute("android:enabled", "true")
                         setAttribute("android:shortcutId", "settings")
-                        setAttribute("android:shortcutShortLabel", "@string/piko_name")
-                        setAttribute("android:shortcutLongLabel", "@string/piko_name")
+                        setAttribute("android:shortcutShortLabel", "@string/piko_title_settings_shortcut")
+                        setAttribute("android:shortcutLongLabel", "@string/piko_title_settings_shortcut")
                         appendChild(intentElement)
                     }
                 it.documentElement.insertBefore(shortcutElement, it.documentElement.firstChild)
