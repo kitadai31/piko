@@ -59,7 +59,7 @@ internal val settingsResourcePatch =
                 parent.appendChild(sideBtn)
             }
 
-            // shortcut
+            // Add piko settings to the launcher icon long-press shortcuts
             document("res/xml/shortcuts.xml").use {
                 val extraElement =
                     it.createElement("extra").apply {
@@ -70,7 +70,6 @@ internal val settingsResourcePatch =
                     it.createElement("intent").apply {
                         setAttribute("android:targetPackage", "com.twitter.android")
                         setAttribute("android:action", "android.intent.action.VIEW")
-                        // Open Piko Settings
                         setAttribute("android:data", "https://x.com/i/piko/")
                         setAttribute("android:targetClass", "com.twitter.deeplink.implementation.UrlInterpreterActivity")
                         appendChild(extraElement)
@@ -80,8 +79,8 @@ internal val settingsResourcePatch =
                         setAttribute("android:icon", "@drawable/ic_vector_settings_shortcut")
                         setAttribute("android:enabled", "true")
                         setAttribute("android:shortcutId", "settings")
-                        setAttribute("android:shortcutShortLabel", "@string/piko_title_settings_shortcut")
-                        setAttribute("android:shortcutLongLabel", "@string/piko_title_settings_shortcut")
+                        setAttribute("android:shortcutShortLabel", "@string/piko_title_settings")
+                        setAttribute("android:shortcutLongLabel", "@string/piko_title_settings")
                         appendChild(intentElement)
                     }
                 it.documentElement.insertBefore(shortcutElement, it.documentElement.firstChild)
