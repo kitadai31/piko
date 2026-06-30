@@ -50,8 +50,8 @@ Then click the deep link below.
 
 <summary>Method B: Using shortcut</summary>
 
-1. Long press the app icon and select "Piko". This opens the Piko Settings.
-<img width="240" src="https://github.com/user-attachments/assets/72dfb2fd-d948-41f0-a28b-2206332f80fc" />
+1. Long press the app icon and select "Piko settings".
+<img width="431" height="669" src="https://github.com/user-attachments/assets/04862e6f-268d-4e78-a043-38f6ddae7965" />
 
 2. Select "Backup and restore".
 
