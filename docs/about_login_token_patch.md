@@ -51,11 +51,30 @@ Then click the deep link below.
 <summary>Method B: Using shortcut</summary>
 
 1. Long press the app icon and select "Piko settings".
-<img width="431" height="669" src="https://github.com/user-attachments/assets/04862e6f-268d-4e78-a043-38f6ddae7965" />
+<img width="360" src="https://github.com/user-attachments/assets/04862e6f-268d-4e78-a043-38f6ddae7965" />
 
 2. Select "Backup and restore".
 
 3. Select "Import login token".
+
+</details>
+
+<details>
+
+<summary>Method C: Using very legacy login screen</summary>
+
+X still contains a very legacy login screen that no longer functions. Coincidentally, it serves as a loophole for importing tokens.
+
+1. Long press the app icon and select "Search". This opens the very legacy login screen.
+<img width="240" src="https://github.com/user-attachments/assets/72dfb2fd-d948-41f0-a28b-2206332f80fc" />
+
+2. Tap "Sign up" in the upper right corner.
+<img width="240" src="https://github.com/user-attachments/assets/1f81b83a-e7a4-49de-b448-e47dbe02cfd0" />
+
+3. The "Login through token json" button is there.
+<img width="240" src="https://github.com/user-attachments/assets/36589f61-acdb-43fb-9601-20c493938e0b" />
+
+(The very legacy login screen can also be opened from device settings > Accounts > Add account > X)
 
 </details>
 
